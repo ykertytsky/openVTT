@@ -1,17 +1,13 @@
-"use client"
+import React from "react";
+import NavBarLayout from "./components/NavbarLayout";
 
-import { Button } from "@carbon/react"
+const App: React.FC = () => (
+  <>
+    <NavBarLayout />
+    <main>
+      {/* Page content will go here */}
+    </main>
+  </>
+);
 
-
-function App() {
-  
-
-  return (
-    <div>
-      <h1>App</h1>
-      <Button>Click me</Button>
-    </div>
-  )
-}
-
-export default App
+export default App;
