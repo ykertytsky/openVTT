@@ -42,8 +42,8 @@ const NavBarLayout: React.FC = () => {
           </HeaderName>
           <HeaderNavigation aria-label="Main Menu">
             <HeaderMenuItem
-              href="/current_game"
-              isActive={currentPath === "/current_game"}
+              href="/active_session"
+              isActive={currentPath === "/active_session"}
             >
               Ruined Temple of Azariel
             </HeaderMenuItem>
@@ -63,13 +63,15 @@ const NavBarLayout: React.FC = () => {
             </HeaderGlobalAction>
             <HeaderGlobalAction
               aria-label="Settings"
-              onClick={() => console.log("Notification clicked")}
+              onClick={() => console.log("Settings clicked")}
+              href="/settings"
             >
               <Settings size={20} />
             </HeaderGlobalAction>
             <HeaderGlobalAction
               aria-label="User"
-              onClick={() => console.log("Notification clicked")}
+              onClick={() => console.log("User clicked")}
+              href="/user"
             >
               <User size={20} />
             </HeaderGlobalAction>
