@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 
+import InstrumentPanel from "../InstrumentPanel/InstrumentPanel";
+
 const MapCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [image, setImage] = useState<HTMLImageElement | null>(null);
@@ -8,6 +10,7 @@ const MapCanvas: React.FC = () => {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const [startDrag, setStartDrag] = useState({ x: 0, y: 0 });
+
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -104,6 +107,7 @@ const MapCanvas: React.FC = () => {
 
   return (
     <div>
+      <InstrumentPanel/>
       <canvas
         ref={canvasRef}
         width={dimensions.width}

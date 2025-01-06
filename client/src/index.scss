@@ -1,3 +1,7 @@
 @use '@carbon/react' with (
     $use-flexbox-grid: true
 );
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
