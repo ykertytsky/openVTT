@@ -1,8 +1,8 @@
 @use '@carbon/react' with (
     $use-flexbox-grid: true
 );
-@use '@carbon/react/scss/type';
-@use '@carbon/react/scss/colors' as *;
+@use '@carbon/type';
+@use '@carbon/colors';
 
 :root {
     @include type.reset();

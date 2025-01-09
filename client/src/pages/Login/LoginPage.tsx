@@ -104,9 +104,6 @@ const Login: React.FC = () => {
           </div>
         </Column>
         <Column className="image_column">
-          <div className="image">
-            <img src="https://i.imgur.com/vhJbF7S.png" alt="" />
-          </div>
         </Column>
       </Row>
     </FlexGrid>
