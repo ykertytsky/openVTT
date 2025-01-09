@@ -1,0 +1,77 @@
+@use '@carbon/react/scss/type';
+@use '@carbon/react/scss/colors' as *;
+
+body {
+    overflow: hidden;
+}
+
+.login_form {
+    margin-top: 32px;
+}
+
+h1 {
+    @include type.type-style('fluid-heading-04', true);
+}
+
+form {
+    margin-top: 24px;
+    max-width: 448px;
+}
+
+.inputs {
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+.utilities {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login_button {
+    margin-top: 16px;
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    
+    box-sizing: border-box;
+}
+
+.login_button > button {
+    width: 100%;
+}
+
+.image_column {
+    width: 100%;
+    height: 100vh;
+}
+
+.image {
+    position: fixed;
+    height: 100vh;
+    image-rendering: auto;
+}
+
+.divider {
+    height: 1px;
+    max-width: 448px;
+    margin-top: 16px;
+    color: $gray-50;
+}
+
+.register {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    color: $gray-100;
+    width: 100%;
+}
+
+.register > span {
+    @include type.type-style('body-compact-01', true);
+}
+
+.register > button {
+    margin-top: 16px;
+    width: 100%;
+}

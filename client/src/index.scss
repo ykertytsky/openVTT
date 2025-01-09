@@ -1,7 +1,11 @@
 @use '@carbon/react' with (
     $use-flexbox-grid: true
 );
+@use '@carbon/react/scss/type';
+@use '@carbon/react/scss/colors' as *;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+    @include type.reset();
+    @include type.default-type();
+    @include type.type-classes();
+}

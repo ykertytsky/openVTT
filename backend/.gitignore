@@ -1,0 +1,23 @@
+# Ignore all files in the .venv directory
+.venv/
+
+# Ignore .vscode
+.vscode/
+
+# Ignore all files in the logs directory
+logs/
+
+# Ignore all files in the migrations directory
+migrations/
+
+# Ignore all files in the data directory
+data/
+
+# Ignore all files in the tests directory
+tests/
+
+# Ignore all files in the .pytest_cache directory
+.pytest_cache/
+__pycache__
+# Ignore all files with the .env extension
+*.env
