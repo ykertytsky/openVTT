@@ -4,6 +4,10 @@
 @use '@carbon/type';
 @use '@carbon/colors';
 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 :root {
     @include type.reset();
     @include type.default-type();

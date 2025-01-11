@@ -36,8 +36,7 @@ const Login: React.FC = () => {
     if (error) {
       setError(error.message); // Display error
     } else {
-      console.log("Login successful!");
-      // Perform any post-login actions like navigation
+      window.location.href = '/';
     }
 
     setLoading(false);
@@ -98,13 +97,13 @@ const Login: React.FC = () => {
           </div>
           <div className="register">
             <span>Don't have an account yet?</span>
-            <Button kind="tertiary" renderIcon={ArrowRight}>
+            <Button kind="tertiary" renderIcon={ArrowRight} href="/register" className="register_button">
               Register Now
             </Button>
           </div>
         </Column>
-        <Column className="image_column">
-        </Column>
+        <div className="image_column">
+        </div>
       </Row>
     </FlexGrid>
   );

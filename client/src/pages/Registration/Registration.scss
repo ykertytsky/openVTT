@@ -6,7 +6,7 @@ Row {
 }
 
 
-.login_form {
+.registration_form {
     flex: 0.25;
     margin-top: 32px;
     max-width: 448px;
@@ -25,14 +25,11 @@ Row {
             &>*:not(:last-child) {
                 margin-bottom: 16px;
             }
+
         }
 
-        .utilities {
-            display: flex;
-            justify-content: space-between;
-        }
 
-        .login_button {
+        .register_button {
             margin-top: 16px;
             width: 100%; 
             display: flex;
@@ -43,6 +40,17 @@ Row {
                 max-width: unset;
                 width: 100%;
                 
+            }
+        }
+
+        .flex.items-center {
+            position: relative;
+            
+            .cds--form-requirement {
+                position: absolute;
+                bottom: -20px;
+                left: 0;
+                font-size: 0.75rem;
             }
         }
     }
@@ -80,7 +88,7 @@ Row {
     top: 0;
     width: 60%;
     height: 100vh;
-    background-image: url('../../assets/hero.png'); 
+    background-image: url('../../assets/hero2.png'); 
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;

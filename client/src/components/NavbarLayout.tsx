@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Header,
   HeaderContainer,
@@ -10,31 +10,50 @@ import {
   HeaderGlobalBar,
   HeaderGlobalAction,
 } from "@carbon/react";
-import { Notification, User, Settings} from "@carbon/icons-react";
+import { Notification, User, Settings } from "@carbon/icons-react";
+import { supabase } from "../supabaseClient";
+
+interface HeaderRenderProps {
+  isSideNavExpanded: boolean;
+  onClickSideNavExpand: () => void;
+}
 
 const NavBarLayout: React.FC = () => {
-  // Simulated authentication status (replace this with real authentication logic)
-  const isLoggedIn = false; // Change to `false` to test the logged-out variant
-
-  // Get the current path
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const currentPath = window.location.pathname;
+
+  useEffect(() => {
+    // Check initial auth status
+    const checkAuthStatus = async () => {
+      const user = await supabase.auth.getUser();
+      setIsLoggedIn(!!user.data.user);
+    };
+
+    // Listen to login/logout events
+    const { data: listener } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_IN") {
+        setIsLoggedIn(true);
+      } else if (event === "SIGNED_OUT") {
+        setIsLoggedIn(false);
+      }
+    });
+
+    checkAuthStatus();
+
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
+  }, []);
 
   return (
     <HeaderContainer
-      render={({
-        isSideNavExpanded,
-        onClickSideNavExpand,
-      }: {
-        isSideNavExpanded: boolean;
-        onClickSideNavExpand: () => void;
-      }) => (
+      render={({ isSideNavExpanded, onClickSideNavExpand }: HeaderRenderProps) => (
         <Header aria-label="Open VTT">
           <SkipToContent />
           <HeaderMenuButton
             aria-label={isSideNavExpanded ? "Close menu" : "Open menu"}
             onClick={onClickSideNavExpand}
             isActive={isSideNavExpanded}
-            aria-expanded={isSideNavExpanded} // Accessibility
           />
           <HeaderName href="/" prefix="Open">
             VTT
@@ -42,7 +61,6 @@ const NavBarLayout: React.FC = () => {
           <HeaderNavigation aria-label="Main Menu">
             {isLoggedIn ? (
               <>
-                {/* Logged-in menu */}
                 <HeaderMenuItem
                   href="/active_session"
                   isActive={currentPath === "/active_session"}
@@ -58,14 +76,13 @@ const NavBarLayout: React.FC = () => {
               </>
             ) : (
               <>
-                {/* Logged-out menu */}
+                {/* Logged-out menu can be added here */}
               </>
             )}
           </HeaderNavigation>
           <HeaderGlobalBar>
             {isLoggedIn ? (
               <>
-                {/* Logged-in global actions */}
                 <HeaderGlobalAction
                   aria-label="Notifications"
                   onClick={() => console.log("Notification clicked")}
@@ -74,30 +91,24 @@ const NavBarLayout: React.FC = () => {
                 </HeaderGlobalAction>
                 <HeaderGlobalAction
                   aria-label="Settings"
-                  onClick={() => console.log("Settings clicked")}
                   href="/settings"
                 >
                   <Settings size={20} />
                 </HeaderGlobalAction>
                 <HeaderGlobalAction
                   aria-label="User"
-                  onClick={() => console.log("User clicked")}
                   href="/user"
                 >
                   <User size={20} />
                 </HeaderGlobalAction>
               </>
             ) : (
-              <>
-                {/* Logged-out global actions */}
-                <HeaderGlobalAction
-                  aria-label="Login"
-                  onClick={() => console.log("Redirecting to login")}
-                  href="/login"
-                >
-                  <User size={20}/> 
-                </HeaderGlobalAction>
-              </>
+              <HeaderGlobalAction
+                aria-label="Login"
+                href="/login"
+              >
+                <User size={20} />
+              </HeaderGlobalAction>
             )}
           </HeaderGlobalBar>
         </Header>
